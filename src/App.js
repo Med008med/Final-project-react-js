@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState } from 'react';
+import './App.css';
+import './components/Todo.jsx';
+import Nav from './components/Nav.jsx';
+import Todo from './components/Todo.jsx';
+import Quote from './components/Quote.jsx';
+import { Route, Routes } from 'react-router-dom';
+import Timer from './components/Timer.jsx';
+import Home from './components/Home.jsx';
+import Modal from './components/Modal.jsx';
 function App() {
+  const [todos, setTodos] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Nav/>
+      <Routes >
+        <Route path="/" element={<Home/>}/> 
+        <Route path="/Timer" element={<Timer/>}/>
+        <Route path="/To-Do-List" element={<Todo setTodos={setTodos} todos={todos} />}/>
+        <Route path="/Quote" element={<Quote/>}/>
+      </Routes>
+      
     </div>
   );
 }
